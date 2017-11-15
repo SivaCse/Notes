@@ -1,32 +1,32 @@
-Strict Mode
-===========
+# Es6 Notes for future reference
+
+### Strict Mode
+
 Es5 - manual enable
 Es6 - enable by default
  
--------------------
 
-Scope
-=====
+### Scope
 
 Es5 - Block scope is achieved by var ( function level )
 Es6 - Block scope is achieved by let/const
 
-----------------------------
 
-let
-===
+### let
+
 * ) let and const are scoped to the nearest enclosing block.
 * ) variables declared using let can read/assign values inside block
 * ) use inside loop,  so using setTimeout inside loop will get every value instead of last one
 
 Ex 1
-
+```js
 {
   let myName="Siva";
   myName="Kannan";
   console.log(myName) // Kannan
 }
 console.log('name outside',myName) // Uncaught ReferenceError: myName is not defined
+```
 
 here , let is surrounded by { } .
 
