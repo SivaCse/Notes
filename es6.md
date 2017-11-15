@@ -2,14 +2,16 @@
 
 ### Strict Mode
 
-Es5 - manual enable
-Es6 - enable by default
+Es5 - manual enable.
+
+Es6 - enable by default.
  
 
 ### Scope
 
-Es5 - Block scope is achieved by var ( function level )
-Es6 - Block scope is achieved by let/const
+Es5 - Block scope is achieved by var ( function level ).
+
+Es6 - Block scope is achieved by let/const.
 
 
 ### let
