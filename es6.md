@@ -5,7 +5,7 @@
 Es5 - manual enable.
 
 Es6 - enable by default.
- 
+
 
 ### Scope
 
@@ -32,78 +32,78 @@ console.log('name outside',myName) // Uncaught ReferenceError: myName is not def
 
 here , let is surrounded by { } .
 
-
-------------------------
-
-const 
-=====
+### const
 
 * ) used to define variables which are read only
-* ) reference behaves differently . see example 
+* ) reference behaves differently . see example
 * ) value must on declaration. i e const name; will throw error. but let wont
 
 Ex 1
+```js
 {
   const myName="Siva";
   myName="Kannan"; // Uncaught TypeError: Assignment to constant variable.
   console.log(myName)
 }
-console.log('name outside',myName) 
-
+console.log('name outside',myName)
+```
 Ex 2
-
+```js
 {
   const myName="Siva";
   console.log(myName)
 }
 console.log('name outside',myName)  // Uncaught ReferenceError: myName is not defined
+```
 Siva
 
 Ex 3 : reference assignment
+```js
 	const obj = {name:"A"};
 	obj.age=21;
 	console.log(obj)
-
-	output will 
+```
+	output will
 	[object Object] {
 	  age: 21,
 	  name: "A"
 	}
 
 Ex 4 : use freez to prevent modifications
-	const ro = Object.freeze({name:"Siva"})	
+```js
+	const ro = Object.freeze({name:"Siva"})
 	ro.name = "Bharathi" // wont add
+```  
 
 Ex 5:
+```js
 	const arr = [1,2,3];
 
-	for (const [index, elem] of arr.entries()) { 
-	        const message = index + '. ' + elem; 
+	for (const [index, elem] of arr.entries()) {
+	        const message = index + '. ' + elem;
 	        console.log(message);
-	    }	
----------------------------------------
+	    }
+```
 
-How to create a Private block scope in Es6 ( standard way )
-===========================================================
 
+### How to create a Private block scope in Es6 ( standard way )
+```js
 if(true) {
 	// define your private variables i.e let and const
 }
+```
 
 Note this is alterate of IIFE in ES5
 
 --------------------------------------
 
-Template Literals
-=================
-
+### Template Literals
+```js
 const name = 'Kannan';   
 console.log(`Hello ${name}`);
+```
 
-----------------------------
-
-Arrow functions
-===============
+### Arrow functions
 
 * can create functions without function keyword
 * can return value without return keyword
@@ -114,24 +114,34 @@ Arrow functions
 * manage this context ( arrow functions capture the this value of the nearest enclosing context )
 
 Ex 1
+```js
     sayHello = () => console.log('Hi');
     sayHello()
     Hi
+```    
 
 Ex 2
+```js
 	sayHello = () => {
 	const name = "Hi";
 	console.log('line 1');
 	console.log('line 2');
 	}
-
+```
 Ex 3
-	sayHello = param => console.log(param);	
+```js
+	sayHello = param => console.log(param);
+```
 
-------------------------------------------------
-
-Short Hand object literals
-=========================
+Ex 4 Return Object
+```js
+	const sayHello = () => ({
+	name:"Siva",
+	message:"Hello"
+	})		
+```
+### Short Hand object literals
+```js
 const obj = {
     foo() {
         console.log('inside foo')
@@ -142,47 +152,47 @@ const obj = {
 }
 
 obj.foo();
+```
 
+### Destructuring
 
----------------------------------------------------
-
-Destructuring
-=============
 * ) Destructuring is a convenient way to get values out of arrays and objects.
 * ) try to destructure a variable that’s not contained within an object. It will just return undefined.
 
 Ex 1 Arrays
+```js
 	let [day,month,year] = "11/11/2017".split("/")
 	console.log(day,month,year)
 
 	let [,month,year] = "11/11/2017".split("/") // skip one
 	console.log(month,year)
-
+```
 Ex 2 Objects
+```js
 	const student = {name:"Siva",address:"KK dist",age:32};
 
 	const {address} = student;
 
 	console.log(address)
-
-Ex 3 : use let for writable 
-
+```
+Ex 3 : use let for writable
+```js
 	let {address} = student;
     address = "new address";
 	console.log(address)
+```
 
 
-
-Ex 4 Object Alias 
-
+Ex 4 Object Alias
+```js
 	const student = {name:"Siva",address:"KK dist",age:32};
 
 	const {address:myAddress} = student;
 
 	console.log(myAddress,'Just as alias')
-
+```
 Ex 5 return with destructure
-
+```js
 	function address() {
 	  const street = "Street Name";
 	  const district = "KK";
@@ -192,22 +202,24 @@ Ex 5 return with destructure
 	    district,
 	    state
 	  }
-	  
+
 	}
 
 	const obj = address();
 
-console.log(obj)	
+  console.log(obj)
 
-----------------------------
+```
 
-for .. of
-=========
+
+### for .. of
+
 for loop - can break loop
 forEach  - can't break loop
 for .. of is mixing of above two loops. can break and iterate collections. can use Destructuring
 
 Ex 1
+```js
 	const names = ["a","b","c"];
 	for(let name of names) {
 	    if (name === "c") {
@@ -215,25 +227,25 @@ Ex 1
 	    }
 
 	    console.log(name); // wil log a and b only
-	}	
-
+	}
+```
 Ex 2 Destructuring
+```js
 	const names = [{name: 'A', age:1}, {name: 'B', age:2}];
 	for(let {name} of names) {
 	    console.log('Hello ' + name + '!');
 	}
-
+```
 Ex 3
+```js
 	for (const [index, elem] of names.entries()) {
     console.log(index+'. '+elem);
-	}	
-
------------------------------------------------
-
-Default Parameter Values
-========================
+	}
+```
+### Default Parameter Values
 
 Ex 1
+```js
 	const sayHello = (name="A") =>{
 	  console.log('Hi ',name)
 	}
@@ -241,50 +253,55 @@ Ex 1
 	sayHello()
 	sayHello("B")
 
----------------------------------------
+```
 
-Spread/Rest operator (...)
-=====================
+### Spread/Rest operator (...)
+
 * ) ... operator is referred to as spread or rest operator, depending on how and where it is used.
 * ) passing parameter to function calling is spread
 * ) function body access is rest
 * ) is also for creating object from another object
 
 Ex 1:
+```js
 	const displayDetails = (...details) =>{
 	  console.log(details[0])
 	}
 
 	const details = ["a",21,'KK Dist'];
 	displayDetails(...details)
+```  
 
 Ex 2: Concat Two arrays
+```js
 	const a = [1,2,3]
 	const b = [4,5,6]
 	const c = [...a,...b];
 	console.log(c)
 	c[2] = 33;
 	console.log(a,b)
-
+```
 Ex 3:
+```js
 	const user = {name: 'a', age: 21}
 	const address = {address: 'KK'}
 	const combined = {created: '2017-12-31', ...address, ...user}
 	console.log(combined);
 	combined.name="B";
 	console.log(user);
-	console.log(combined);	
-
+	console.log(combined);
+```
 Ex 4: array to string another
-	Math.max(...[1,2,3])	
+```js
+	Math.max(...[1,2,3])
+```
 
-------------------------
+### class less inheritance
 
-class less inheritance
-======================
  * ) use super keyword to inherit from another object.
 
-Ex : 
+Ex :
+```js
 	const Obj1 = {
     one() {
         console.log("one");
@@ -299,12 +316,11 @@ Ex :
 	}
 
 	Object.setPrototypeOf(Obj2, Obj1);
-	Obj2.one(); 
+	Obj2.one();
 
----------------------------------------------	
+```
 
-Class
-======
+### Class
 
 * is used to create objects
 * can implement inheritance easily
@@ -315,15 +331,16 @@ Class
 * class is not hoisted. create it and use it after not before
 
 Ex 1:
+```js
 	class Student {
 	  constructor() {
 	    console.log('From constructor')
 	  }
-	  
+
 	  getName() {
 	    return "Name1"
 	  }
-	  
+
 	  getActivity() {
 	    console.log('Studying...')
 	  }
@@ -334,16 +351,19 @@ Ex 1:
 	console.log(s.getName())
 	s.getActivity();
 
+```
+
 Ex 2 : Inheritance
+```js
 	class Student {
 	  constructor(name) {
 	    this.name = name;
 	  }
-	  
+
 	  getName() {
     console.log('My Name is',this.name);
 	  }
-	  
+
 	  getActivity() {
 	    console.log('Studying...')
 	  }
@@ -353,7 +373,7 @@ Ex 2 : Inheritance
 	  constructor(name) {
 	    super(name)
 	  }
-	    
+
 	  getActivity() {
 	    console.log('Teaching...')
 	  }
@@ -362,17 +382,17 @@ Ex 2 : Inheritance
 	const t = new Teacher('Ramanujam');
 
 	t.getName();
-	t.getActivity();	
+	t.getActivity();
 
---------------------------------------------
+```
 
-static keyword in class
-=======================
+### static keyword in class
 
 * ) access members without instantiation
 * ) bit increased performance
 * ) cannot be accessed from instances
 
+```js
 class Hello {
   static getName() {
     console.log('inside static method')
@@ -381,10 +401,11 @@ class Hello {
 
 Hello.getName()
 
------------------------------------
+```
 
-Getters and setters in class
-============================
+### Getters and setters in class
+
+```js
 class Rectangle {
     constructor( width, height ) {
         this.width = width;
@@ -402,13 +423,14 @@ class Rectangle {
 const myRectangle = new Rectangle(5,2);
 console.log(myRectangle.area)
 myRectangle.area=100
------------------------------
-Maps
-====
+```
+
+### Maps
 
 Map is a datastructure to hold key value pairs.
 
 Ex 1
+```js
 	var map = new Map();
 	map.set('name',"A");
 	map.set('age',21);
@@ -428,66 +450,65 @@ Ex 1
 	map.size;			 // Gives you the size of map
 	map.clear();
 
---------------------------------------
+```
 
-WeakMaps
-========
+### WeakMaps
+
 
 * ) collection of key/value pairs
 * ) value must reference types
 * ) prevent memory leaks by support garbage collection
 * ) extend object , let js engine to garbage collection.
 
-------------------
 
-Sets
-====
+### Sets
 
 A datastructure used to hold unique values. duplicate will be removed
 
 Ex 1:
+```js
 	let set = new Set();
 	set.add(1);
 	set.add(2);
 	set.add(1);
 	console.log(set.size) // 2
+```  
 
 Ex 2:
+```js
 	let set = new Set();
 	const name = {name:"A"};
 	set.add(name);
 	set.add({name:"B"});
 	set.add(name);
 	console.log(set.size)	 // 2
+```  
 
 Ex 3:
+```js
 	let set = new Set();
 	const name = {name:"A"};
 	set.add([name,{age:21},name]);
 	console.log(set)
+```
 
-------------------------------------
+### Weaksets
 
-Weaksets
-========
+### String Functions
 
-------------------------------
-
-String Functions
-====================
-
+```js
 var city = 'Chennai';
 console.log(city.startsWith('C'));
 console.log(city.endsWith('i'));
 console.log(city.includes('nn'));
 console.log(city.repeat(3));
---------------------------
+```
 
-Array Functions
-================
+### Array Functions
+
 
 1 ) Array.from
-
+```js
 	function fooBar() {
 	  console.log(arguments);
 	}
@@ -508,79 +529,81 @@ Array Functions
 	will output
 	[1, 2, 3]
 
-2 ) Array.fill
+```  
 
+### Array.fill
+```js
 	const arr = [1,2,3];
 
 	const replaced = arr.fill(0);
 
 	console.log(replaced) // [0, 0, 0]
+```  
 
-3 ) Array.find
+### Array.find
+
 	is used to find value match by condition
+
 	Note : value not values (first matched)
 
 	Ex 1:
-
+```js
 	const names = [{name:'a',age:1},{name:'a',age:21},{name:'a',age:5}];
 	const found = names.find((name)=>name.age>1);
-	console.log(found)	
+	console.log(found)
 
 	will output
 	[object Object] {
 	  age: 21,
 	  name: "a"
 	}
+```
+### Array.findIndex
 
-4 ) Array.findIndex
-	
-	Ex 
+	Ex
+```js  
 	const names = [{name:'a',age:1},{name:'a',age:21},{name:'a',age:5}];
 	const found = names.findIndex((name)=>name.age>1);
 	console.log(found) // output is 1
+```
 
-------------------------------------
-
-Modules
-=======
+### Modules
 
 * ) Javascript module is a file that contains exported properties. properties can be a primitive or reference.
-* ) There are two types of exports one is default export and another is named export. 
-* ) Default export properties can import using optional name. but named exports can't. 
+* ) There are two types of exports one is default export and another is named export.
+* ) Default export properties can import using optional name. but named exports can't.
 * ) A javascript module can contain any nmber of named exports but only one default export.
 * ) { } braces are used to destructed import
 
-----------------------------------------
-
-Iterators
-==========
+### Iterators
 
 * ) used to keep track of an iterable object.
 * ) access one item at a time from a collection.
 
 
 Ex 1:
+```js
 	const arr = [11,12,13];
 	const itr = arr[Symbol.iterator]();
 	console.log(itr.next().value)
 	console.log(itr.next().value)
 	console.log(itr.next().value)
+```
 
--------------------------------------
 
-Symbol
-======
+### Symbol
+
  is used to define unique keys in objects.
 
--------------------
 
-Generators
-===========
+### Generators
+
 * ) Nothing but function generate value over time but one at a time
 * ) use * before function name
 * ) use yield to generate and return value
 
 Ex :
+```js
 	function *callThreeTimes() {
     let n = 1;
     while (n<4) {
@@ -593,3 +616,4 @@ Ex :
 	console.log(numbers.next())
 	console.log(numbers.next())
 	console.log(numbers.next())
+```
