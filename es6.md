@@ -20,6 +20,9 @@ Es6 - Block scope is achieved by let/const.
 * ) variables declared using let can read/assign values inside block
 * ) use inside loop,  so using setTimeout inside loop will get every value instead of last one
 * ) Adding var at the top level will add the variable in the global object but for let this wont happen
+* ) Temporal deadzone is the area from the start of the block to intialization of the variable.
+* ) at the temporal dead zone let will throw Reference Error
+* ) let can be declared without value. but const cant.
 
 
 Ex 1
@@ -40,6 +43,16 @@ let y = 'global';
 console.log(this.x); // "global"
 console.log(this.y); // undefined
 // source is from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+```
+
+```js
+function do_something() {
+  console.log(bar); // undefined
+  
+  var bar = 1;
+  let foo = 2;
+}
+// line 48 to 51 is called temporal deadzone
 ```
 
 ### const
