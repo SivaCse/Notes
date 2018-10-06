@@ -19,6 +19,8 @@ Es6 - Block scope is achieved by let/const.
 * ) let and const are scoped to the nearest enclosing block.
 * ) variables declared using let can read/assign values inside block
 * ) use inside loop,  so using setTimeout inside loop will get every value instead of last one
+* ) Adding var at the top level will add the variable in the global object but for let this wont happen
+
 
 Ex 1
 ```js
@@ -31,6 +33,14 @@ console.log('name outside',myName) // Uncaught ReferenceError: myName is not def
 ```
 
 here , let is surrounded by { } .
+
+```js
+var x = 'global';
+let y = 'global';
+console.log(this.x); // "global"
+console.log(this.y); // undefined
+// source is from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+```
 
 ### const
 
