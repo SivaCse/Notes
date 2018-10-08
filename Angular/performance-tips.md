@@ -1,3 +1,7 @@
+# Angular Performance Notes
+
+
+
 1) trackBy
 When using ngFor to loop over an array in templates, use it with a trackBy function which will return an unique identifier for each item.
 
@@ -12,12 +16,14 @@ Before
 <li *ngFor="let item of items;">{{ item }}</li>
 After
 
-// in the template
+ in the template
 <li *ngFor="let item of items; trackBy: trackByFn">{{ item }}</li>
-// in the component
+ in the component
+```js
 trackByFn(index, item) {    
    return item.id; // unique id corresponding to the item
 }
+```
 2) const vs let
 When declaring variables, use const when the value is not going to be reassigned.
 
@@ -97,23 +103,26 @@ async pipes unsubscribe themselves automatically and it makes the code simpler b
 This also stops components from being stateful and introducing bugs where the data gets mutated outside of the subscription.
 
 Before
-```js
-// template
+
+in template
 <p>{{ textToDisplay }}</p>
-// component
+in component
+```js
 iAmAnObservable
     .pipe(
        map(value => value.item),
        takeUntil(this._destroyed$)
      )
     .subscribe(item => this.textToDisplay = item);
+
 ```    
 After
 
 // template
 <p>{{ textToDisplay$ | async }}</p>
-```js
+
 // component
+```js
 this.textToDisplay$ = iAmAnObservable
     .pipe(
        map(value => value.item)
