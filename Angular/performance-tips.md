@@ -26,7 +26,7 @@ Why?
 Using let and const where appropriate makes the intention of the declarations clearer. It will also help in identifying issues when a value is reassigned to a constant accidentally by throwing a compile time error. It also helps improve the readability of the code.
 
 Before
-
+```js
 let car = 'ludicrous car';
 let myCar = `My ${car}`;
 let yourCar = `Your ${car};
@@ -36,8 +36,9 @@ if (iHaveMoreThanOneCar) {
 if (youHaveMoreThanOneCar) {
    yourCar = `${youCar}s`;
 }
+```
 After
-
+```js
 // the value of car is not reassigned, so we can make it a const
 const car = 'ludicrous car';
 let myCar = `My ${car}`;
@@ -48,6 +49,7 @@ if (iHaveMoreThanOneCar) {
 if (youHaveMoreThanOneCar) {
    yourCar = `${youCar}s`;
 }
+```
 3) Pipeable operators
 Use pipeable operators when using RxJs operators.
 
@@ -60,20 +62,22 @@ This also makes it easy to identify unused operators in the files.
 Note: This needs Angular version 5.5+.
 
 Before
-
+```js
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 iAmAnObservable
     .map(value => value.item)
     .take(1);
+```    
 After
-
+```js
 import { map, take } from 'rxjs/operators';
 iAmAnObservable
     .pipe(
        map(value => value.item),
        take(1)
      );
+```     
 4) Isolate API hacks
 Not all APIs are bullet proof — sometimes we need to add some logic in the code to make up for bugs in the APIs. Instead of having the hacks in components where they are needed, it is better to isolate them in one place — like in a service and use the service from the component.
 
@@ -93,7 +97,7 @@ async pipes unsubscribe themselves automatically and it makes the code simpler b
 This also stops components from being stateful and introducing bugs where the data gets mutated outside of the subscription.
 
 Before
-
+```js
 // template
 <p>{{ textToDisplay }}</p>
 // component
@@ -103,15 +107,18 @@ iAmAnObservable
        takeUntil(this._destroyed$)
      )
     .subscribe(item => this.textToDisplay = item);
+```    
 After
 
 // template
 <p>{{ textToDisplay$ | async }}</p>
+```js
 // component
 this.textToDisplay$ = iAmAnObservable
     .pipe(
        map(value => value.item)
      );
+```     
 6) Clean up subscriptions
 When subscribing to observables, always make sure you unsubscribe from them appropriately by using operators like take, takeUntil, etc.
 
@@ -122,16 +129,17 @@ Failing to unsubscribe from observables will lead to unwanted memory leaks as th
 Even better, make a lint rule for detecting observables that are not unsubscribed.
 
 Before
-
+```js
 iAmAnObservable
     .pipe(
        map(value => value.item)     
      )
     .subscribe(item => this.textToDisplay = item);
+```    
 After
 
 Using takeUntil when you want to listen to the changes until another observable emits a value:
-
+```js
 private destroyed$ = new Subject();
 public ngOnInit (): void {
     iAmAnObservable
@@ -145,10 +153,12 @@ public ngOnInit (): void {
 public ngOnDestroy (): void {
     this._destroyed$.next();
 }
+
+```
 Using a private subject like this is a pattern to manage unsubscribing many observables in the component.
 
 Using take when you want only the first value emitted by the observable:
-
+```js
 iAmAnObservable
     .pipe(
        map(value => value.item),
@@ -156,6 +166,8 @@ iAmAnObservable
        takeUntil(this._destroyed$)
     )
     .subscribe(item => this.textToDisplay = item);
+
+```    
 Note the usage of takeUntil with take here. This is to avoid memory leaks caused when the subscription hasn’t received a value before the component got destroyed. Without takeUntil here, the subscription would still hang around until it gets the first value, but since the component has already gotten destroyed, it will never get a value — leading to a memory leak.
 
 7) Use appropriate operators
@@ -183,7 +195,7 @@ Why?
 This will reduce the size of the application to be loaded and can improve the application boot time by not loading the modules that are not used.
 
 Before
-
+```js
 // app.routing.ts
 { path: 'not-lazy-loaded', component: NotLazyLoadedComponent }
 After
@@ -213,11 +225,13 @@ import { LazyLoadComponent }   from './lazy-load.component';
   ]
 })
 export class LazyModule {}
+
+```
 9) Avoid having subscriptions inside subscriptions
 Sometimes you may want values from more than one observable to perform an action. In this case, avoid subscribing to one observable in the subscribe block of another observable. Instead, use appropriate chaining operators. Chaining operators run on observables from the operator before them. Some chaining operators are: withLatestFrom, combineLatest, etc.
 
 Before
-
+```js
 firstObservable$.pipe(
    take(1)
 )
@@ -229,8 +243,10 @@ firstObservable$.pipe(
         console.log(`Combined values are: ${firstValue} & ${secondValue}`);
     });
 });
-After
 
+```
+After
+```js
 firstObservable$.pipe(
     withLatestFrom(secondObservable$),
     first()
@@ -238,6 +254,8 @@ firstObservable$.pipe(
 .subscribe(([firstValue, secondValue]) => {
     console.log(`Combined values are: ${firstValue} & ${secondValue}`);
 });
+
+```
 Why?
 
 Code smell/readability/complexity: Not using RxJs to its full extent, suggests developer is not familiar with the RxJs API surface area.
@@ -250,27 +268,28 @@ Always declare variables or constants with a type other than any.
 Why?
 
 When declaring variables or constants in Typescript without a typing, the typing of the variable/constant will be deduced by the value that gets assigned to it. This will cause unintended problems. One classic example is:
-
+```js
 const x = 1;
 const y = 'a';
 const z = x + y;
 console.log(`Value of z is: ${z}`
-// Output
-Value of z is 1a
+// Output Value of z is 1a
+```
 This can cause unwanted problems when you expect y to be a number too. These problems can be avoided by typing the variables appropriately.
-
+```js
 const x: number = 1;
 const y: number = 'a';
 const z: number = x + y;
 // This will give a compile error saying:
 Type '"a"' is not assignable to type 'number'.
 const y:number
+```
 This way, we can avoid bugs caused by missing types.
 
 Another advantage of having good typings in your application is that it makes refactoring easier and safer.
 
 Consider this example:
-
+```js
 public ngOnInit (): void {
     let myFlashObject = {
         name: 'My cool name',
@@ -288,8 +307,10 @@ public processObject(myObject: any): void {
 Name: My cool name
 Age: My cool age
 Location: My cool location
-Let us say, we want to rename the property loc to location in myFlashObject:
 
+```
+Let us say, we want to rename the property loc to location in myFlashObject:
+```js
 public ngOnInit (): void {
     let myFlashObject = {
         name: 'My cool name',
@@ -303,6 +324,8 @@ public processObject(myObject: any): void {
     console.log(`Age: ${myObject.age}`);
     console.log(`Location: ${myObject.loc}`);
 }
+
+```
 // Output
 Name: My cool name
 Age: My cool age
@@ -310,7 +333,7 @@ Location: undefined
 If we do not have a typing on myFlashObject, it thinks that the property loc on myFlashObject is just undefined rather than that it is not a valid property.
 
 If we had a typing for myFlashObject, we would get a nice compile time error as shown below:
-
+```js
 type FlashObject = {
     name: string,
     age: string,
@@ -334,6 +357,8 @@ public processObject(myObject: FlashObject): void {
     Property 'loc' does not exist on type 'FlashObjectType'.
     console.log(`Location: ${myObject.loc}`);
 }
+
+```
 If you are starting a new project, it is worth setting strict:true in the tsconfig.json file to enable all strict type checking options.
 
 12) Make use of lint rules
@@ -346,12 +371,14 @@ Having lint rules in place means that you will get a nice error when you are doi
 Some lint rules even come with fixes to resolve the lint error. If you want to configure your own custom lint rule, you can do that too. Please refer to this article by Craig Spence on how to write your own custom lint rules using TSQuery.
 
 Before
-
+```js
 public ngOnInit (): void {
     console.log('I am a naughty console log message');
     console.warn('I am a naughty console warning message');
     console.error('I am a naughty console error message');
 }
+
+```
 // Output
 No errors, prints the below on console window:
 I am a naughty console message
@@ -459,21 +486,25 @@ Why?
 By declaring the type of the variable appropriately, we can avoid bugs while writing the code during compile time rather than during runtime.
 
 Before
-
+```js
 private myStringValue: string;
 if (itShouldHaveFirstValue) {
    myStringValue = 'First';
 } else {
    myStringValue = 'Second'
 }
-After
 
+```
+After
+```js
 private myStringValue: 'First' | 'Second';
 if (itShouldHaveFirstValue) {
    myStringValue = 'First';
 } else {
    myStringValue = 'Other'
 }
+
+```
 // This will give the below error
 Type '"Other"' is not assignable to type '"First" | "Second"'
 (property) AppComponent.myValue: "First" | "Second"

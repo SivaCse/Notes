@@ -21,8 +21,8 @@ const squareNumbers$ = wholeNumbers$
 
 ```
 
-### conditional breakpoints
+* conditional breakpoints
 
-### console.log
+* console.log
 
-### debugger
+* debugger
