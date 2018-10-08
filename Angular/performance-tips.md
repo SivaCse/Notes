@@ -107,6 +107,7 @@ Before
 in template
 <p>{{ textToDisplay }}</p>
 in component
+
 ```js
 iAmAnObservable
     .pipe(
@@ -483,10 +484,14 @@ After
 // template
 <p *ngIf="showDeveloperStatus"> Status: Developer </p>
 // component
+
+```js
 public ngOnInit (): void {
     this.role = 'developer';
     this.showDeveloperStatus = true;
 }
+
+```
 17) Strings should be safe
 If you have a variable of type string that can have only a set of values, instead of declaring it as a string type, you can declare the list of possible values as the type.
 
