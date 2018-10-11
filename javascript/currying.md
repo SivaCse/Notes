@@ -76,3 +76,46 @@ const getName = get('name');
 movies.map(getName); //should return [ 'Matrix', 'Star Wars', 'The wolf of Wall Street' ]
 
 ```
+
+## Real World Examples
+
+### Function.prototype.bind 
+
+```js
+var add = (a,b) => a+b;
+
+console.log(add(1,2));
+
+var increment = add.bind(undefined, 1)
+console.log(increment(4));
+
+// The problem here is we have to alter `this`
+
+
+export default connect(mapStateToProps)(TodoApp) // react redux connect function
+```
+
+### Event Handling
+
+```js
+const handleChange = (fieldName) => (event) => {
+  saveField(fieldName, event.target.value)
+}
+<input type="text" onChange={handleChange('email')} ... />
+
+```
+
+### Rendering HTML
+
+```js
+renderHtmlTag = tagName => content => `<${tagName}>${content}</${tagName}>`
+
+renderDiv = renderHtmlTag('div')
+renderH1 = renderHtmlTag('h1')
+
+console.log(
+  renderDiv('this is a really cool div'),
+  renderH1('and this is an even cooler h1')
+)
+
+```
