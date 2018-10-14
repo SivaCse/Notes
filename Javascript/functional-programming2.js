@@ -30,7 +30,7 @@ const divide = spreadArg(([x, ...xs]) => reduce(xs, (memo, y) => memo / y, x))
 
 const multiply = spreadArg(([x, ...xs]) => reduce(xs, (memo, y) => memo * y, x))
 
-## Usage
+// Usage
 
 reverse([1,2,3]) // [3,2,1]
 length([1,2,3]) // 3
