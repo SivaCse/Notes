@@ -1,3 +1,5 @@
+```js
+
 var fn = function(arg1, arg2) {
     var str = '<p>aap ' + this.noot + ' ' + arg1 + ' ' + arg2 + '</p>';
     document.body.innerHTML += str;
@@ -27,3 +29,5 @@ boundFn1();
 // Support: same as your jQuery version, available since 1.4
 var boundFn2 = $.proxy(fn, context, args[0], args[1]);
 boundFn2();
+
+```
