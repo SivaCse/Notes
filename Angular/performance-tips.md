@@ -19,6 +19,7 @@ After
  in the template
 <li *ngFor="let item of items; trackBy: trackByFn">{{ item }}</li>
  in the component
+
 ```js
 trackByFn(index, item) {    
    return item.id; // unique id corresponding to the item
@@ -408,11 +409,16 @@ After
    }
 }
 // ..component.ts
+
+```js
+
 public ngOnInit (): void {
     console.log('I am a naughty console log message');
     console.warn('I am a naughty console warning message');
     console.error('I am a naughty console error message');
 }
+
+```
 // Output
 Lint errors for console.log and console.warn statements and no error for console.error as it is not mentioned in the config
 Calls to 'console.log' are not allowed.
