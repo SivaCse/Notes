@@ -7,7 +7,6 @@
   - [Converting to Boolean](#converting-to-boolean)
   - [Objects to Primitive Types](#objects-to-primitive-types)
   - [Arithmetic Operators](#arithmetic-operators)
-  - [`==` operator](#-operator)
   - [Comparison Operator](#comparison-operator)
 - [Typeof](#typeof)
 - [New](#new)
@@ -20,19 +19,12 @@
 - [Deep and Shallow Copy](#deep-and-shallow-copy)
   - [Shallow copy](#shallow-copy)
   - [Deep copy](#deep-copy)
-- [Modularization](#modularization)
-  - [CommonJS](#commonjs)
-  - [AMD](#amd)
 - [The differences between call, apply, bind](#the-differences-between-call-apply-bind)
   - [simulation to implement  `call` and  `apply`](#simulation-to-implement--call-and--apply)
-- [Promise implementation](#promise-implementation)
 - [Generator Implementation](#generator-implementation)
-- [Debouncing](#debouncing)
-- [Throttle](#throttle)
 - [Map、FlatMap and Reduce](#mapflatmap-and-reduce)
 - [Async and await](#async-and-await)
 - [Proxy](#proxy)
-- [Why 0.1 + 0.2 != 0.3](#why-01--02--03)
 - [Regular Expressions](#regular-expressions)
   - [Metacharacters](#metacharacters)
   - [Flags](#flags)
@@ -107,10 +99,6 @@ Note the expression `'a' + + 'b'` for addition:
 // since + 'b' -> NaN
 // You might have seen + '1' -> 1
 ```
-
-## `==` operator
-
-![](https://user-gold-cdn.xitu.io/2018/3/30/16275cb21f5b19d7?w=1630&h=1208&f=png&s=496784)
 
 `toPrimitive` in above figure is converting objects to primitive types.
 
