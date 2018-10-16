@@ -789,5 +789,236 @@ $in:[5,"$items"]},            then: "$$DESCEND",            else: "$$PRUNE"
 { "_id" : 8, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-### Map Reduce
+## Map Reduce
 
+Example 1
+
+```js
+
+var mapFn = function(){
+    emit(this.name,this.age)
+}
+var reduceFn = function(key, values) {
+   return Array.sum(values)
+}
+
+var out_obj = {
+    out:'out_data'
+}
+    
+db.study.mapReduce(mapFn, reduceFn, out_obj);
+
+```
+
+////////////////////////
+
+Example 2
+
+```js
+
+db.getCollection('purchase').insertMany([
+{
+ name: "Siva",
+ items:['Soap','Comp','Mirror']
+ 
+ },
+ {
+ name: "Ram",
+ items:['Soap','Mirror']
+ 
+ },
+ {
+ name: "Raj",
+ items:['Comp','Mirror']
+ 
+ }
+
+])   
+
+
+var mapFn = function(){
+ this.items.forEach(function(val){
+     
+     emit(val,1)
+     })
+ 
+ }
+var reduceFn = function(key, values) {
+    return Array.sum(values)
+}
+
+var out_obj = {
+    out:'out_data'
+    }
+    
+db.purchase.mapReduce(mapFn, reduceFn, out_obj);
+
+```
+
+### output is 
+
+```js
+
+{
+    "_id" : "Comp",
+    "value" : 2.0
+}
+
+/* 2 */
+{
+    "_id" : "Mirror",
+    "value" : 3.0
+}
+
+/* 3 */
+{
+    "_id" : "Soap",
+    "value" : 2.0
+}
+
+
+```
+
+=================================
+
+Example 3
+
+```js
+
+db.getCollection('books').insertMany(
+[{
+ name: "JS First Edition",
+ authors:['Siva','Raj','Ram','Kumar']
+ },
+ {
+ name: "Node js 1st Edition",
+ authors:['Vivek','Mano','Ram','Kumar']
+ },
+ {
+ name: "Mongodb Reference",
+ authors:['Mano','Vivek','Ram','Siva']
+ }]
+ )
+
+var mapFn = function(){
+ var name = this.name;
+ this.authors.forEach(function(val){
+     emit(val,name)
+  })
+ 
+ }
+var reduceFn = function(key, values) {
+    return values.join(',');
+}
+
+var out_obj = {
+ out:'out_data'
+ }
+    
+db.books.mapReduce(mapFn, reduceFn, out_obj);    
+
+```
+
+
+### output is
+
+```js
+
+/* 1 */
+{
+    "_id" : "Kumar",
+    "value" : "JS First Edition,Node js 1st Edition"
+}
+
+/* 2 */
+{
+    "_id" : "Mano",
+    "value" : "Node js 1st Edition,Mongodb Reference"
+}
+
+/* 3 */
+{
+    "_id" : "Raj",
+    "value" : "JS First Edition"
+}
+
+/* 4 */
+{
+    "_id" : "Ram",
+    "value" : "JS First Edition,Node js 1st Edition,Mongodb Reference"
+}
+
+/* 5 */
+{
+    "_id" : "Siva",
+    "value" : "JS First Edition,Mongodb Reference"
+}
+
+/* 6 */
+{
+    "_id" : "Vivek",
+    "value" : "Node js 1st Edition,Mongodb Reference"
+}
+
+
+```
+
+===============================
+
+Example 4
+
+```js
+
+db.getCollection('account').insertMany([
+{
+    name: "Siva",
+    transaction:[{amount:100},{amount:200},{amount:400}]
+    },
+    {
+    name: "Ram",
+    transaction:[{amount:300}]
+    },
+    {
+    name: "Siva",
+    transaction:[{amount:300},{amount:1200},{amount:3400}]
+    }
+
+])
+
+
+
+var mapFn = function(){
+    var name = this.name;
+    var sum = 0;
+    this.transaction.forEach(function(val){
+        sum += val.amount;
+        })
+    emit(name,sum)
+    }
+var reduceFn = function(key, values) {
+    return Array.sum(values);
+}
+
+var out_obj = {
+    out:'out_data'
+    }
+    
+db.account.mapReduce(mapFn, reduceFn, out_obj);
+
+
+### output
+
+
+/* 1 */
+{
+    "_id" : "Ram",
+    "value" : 300.0
+}
+
+/* 2 */
+{
+    "_id" : "Siva",
+    "value" : 5600.0
+}
+
+```
