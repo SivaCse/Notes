@@ -138,14 +138,12 @@ hobbies" : [ "sleep", "eat" ] }
 ## update if match found and create if not exist - upsert
 
 ```js
-> db.student.replaceOne({name:"Ajai dev"},{name:"Ajai dev",age:21},{upsert:true}
-)
+> db.student.replaceOne({name:"Ajai dev"},{name:"Ajai dev",age:21},{upsert:true})
 
 > db.student.replaceOne({name:"Ajai"},{name:"Ajai",age:21},{upsert:true})
 
 
-db.study.update({_id:"5bbcb4bce596bc1c28c2bc8a"},{$set:{age:30}},{upsert:true}
-)
+db.study.update({_id:"5bbcb4bce596bc1c28c2bc8a"},{$set:{age:30}},{upsert:true})
 WriteResult({
 "nMatched" : 0,
 "nUpserted" : 1,
@@ -264,12 +262,12 @@ true
 
 ```js
 > show dbs
-admin    0.000GB
-config   0.000GB
-local    0.000GB
-sekar    0.000GB
-sekardb  0.000GB
-study    0.000GB
+admin    
+config  
+local    
+sekar    
+sekardb 
+study    
 >
 ```
 
