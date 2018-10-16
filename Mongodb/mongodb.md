@@ -850,7 +850,7 @@ $in:[5,"$items"]},            then: "$$DESCEND",            else: "$$PRUNE"
 
 ## Map Reduce
 
-Example 1
+### Example 1
 
 ```js
 
@@ -869,9 +869,9 @@ db.study.mapReduce(mapFn, reduceFn, out_obj);
 
 ```
 
-////////////////////////
 
-Example 2
+
+### Example 2
 
 ```js
 
@@ -938,9 +938,7 @@ db.purchase.mapReduce(mapFn, reduceFn, out_obj);
 
 ```
 
-=================================
-
-Example 3
+### Example 3
 
 ```js
 
