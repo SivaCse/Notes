@@ -32,7 +32,6 @@
 - [Map、FlatMap and Reduce](#mapflatmap-and-reduce)
 - [Async and await](#async-and-await)
 - [Proxy](#proxy)
-- [Why 0.1 + 0.2 != 0.3](#why-01--02--03)
 - [Regular Expressions](#regular-expressions)
   - [Metacharacters](#metacharacters)
   - [Flags](#flags)
