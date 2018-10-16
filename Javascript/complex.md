@@ -21,7 +21,7 @@ Sort array with semver-rules
 var arr = [ "1.0.5", "2.5.0", "0.12.0", "1", "1.23.45", "1.4.50", "1.2.3.4.5.6.7"];
 
 function semverSor() {
-  // put your code here
+  arr.sort((a,b)=> parseFloat(a)-parseFloat(b))
 }
 
 semverSor(arr);
