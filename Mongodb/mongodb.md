@@ -55,8 +55,7 @@ WriteResult({ "nInserted" : 1 })
 
 ```js
 > db.student.find({hobbies:{$in:["a","c"]}})
-{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : [
-"a", "b" ] }
+{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : ["a", "b" ] }
 { "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "a", "b", "c" ] }
 >
 ```
@@ -112,10 +111,8 @@ hobbies" : [ "sleep", "eat" ] }
 
 ```js
 > db.student.find().sort({age:1}).limit(2)
-{ "_id" : ObjectId("5bbb3a4f35f231e33b3c17f3"), "name" : "Sameer", "age" : 30, "
-hobbies" : [ "sleep", "eat" ] }
-{ "_id" : ObjectId("5bbb3a4a35f231e33b3c17f2"), "name" : "Sameer", "age" : 31, "
-hobbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb3a4f35f231e33b3c17f3"), "name" : "Sameer", "age" : 30, "hobbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb3a4a35f231e33b3c17f2"), "name" : "Sameer", "age" : 31, "hobbies" : [ "sleep", "eat" ] }
 >
 ```
 
@@ -123,8 +120,7 @@ hobbies" : [ "sleep", "eat" ] }
 
 ```js
 > db.student.find().sort({age:1}).skip(2).limit(1)
-{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
-obbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "hobbies" : [ "sleep", "eat" ] }
 >
 ```
 
@@ -151,10 +147,10 @@ obbies" : [ "sleep", "eat" ] }
 db.study.update({_id:"5bbcb4bce596bc1c28c2bc8a"},{$set:{age:30}},{upsert:true}
 )
 WriteResult({
-        "nMatched" : 0,
-        "nUpserted" : 1,
-        "nModified" : 0,
-        "_id" : "5bbcb4bce596bc1c28c2bc8a"
+"nMatched" : 0,
+"nUpserted" : 1,
+"nModified" : 0,
+"_id" : "5bbcb4bce596bc1c28c2bc8a"
 })
 >
 ```
