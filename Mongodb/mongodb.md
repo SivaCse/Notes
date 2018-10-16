@@ -13,73 +13,77 @@ db.study......
 
  ## Create Collection
 //here student is the table name.
+
+
  db.createCollection('student')
 
 ## Save Record
-
+```js
 > db.student.insert({name:"Sekar",age:33,hobbies:['sleep','eat']})
 WriteResult({ "nInserted" : 1 })
 >
-
+```
 ## Query database
 
 ### find()
 
+```js
+
 > db.student.find()
-{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
-obbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "hobbies" : [ "sleep", "eat" ] }
 >
 
 > db.student.find({name:"Sekar"})
-{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
-obbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "hobbies" : [ "sleep", "eat" ] }
 >
 
 > db.student.find({name:/Se/})
-{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
-obbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "hobbies" : [ "sleep", "eat" ] }
 >
 
 > db.student.find({hobbies:["a","b"]})
-{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : [
-"a", "b" ] }
+{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : ["a", "b" ] }
 >
 
 > db.student.find({hobbies:"a"})
-{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : [
-"a", "b" ] }
-{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "
-a", "b", "c" ] }
+{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : ["a", "b" ] }
+{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "a", "b", "c" ] }
 >
+
+```
 
 ## find with in 
 
+```js
 > db.student.find({hobbies:{$in:["a","c"]}})
 { "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : [
 "a", "b" ] }
-{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "
-a", "b", "c" ] }
+{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "a", "b", "c" ] }
 >
+
+```
 
 ## find not in
-
+```js
 
 > db.student.find({hobbies:{$nin:["c"]}})
-{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : [
-"a", "b" ] }
+{ "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar", "hobbies" : ["a", "b" ] }
 >
 
-## find nested property
+```
 
+## find nested property
+```js
 
 > db.student.find({"products.cook.rice":"Basmati"})
 { "_id" : ObjectId("5bbb6b5a35f231e33b3c17fb"), "name" : "Pradeep", "products" :
  { "cook" : { "rice" : "Basmati" }, "bath" : { "soap" : "liril" } } }
 >
 
+```
 
 ## projection Ex Select name from student
-
+```js
 > db.student.find({},{name:1})
 { "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar" }
 >
@@ -88,15 +92,14 @@ a", "b", "c" ] }
 { "name" : "Sekar" }
 >
 
-## Sort()
+```
 
+## Sort()
+```js
 > db.student.find().sort({age:-1})
-{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
-obbies" : [ "sleep", "eat" ] }
-{ "_id" : ObjectId("5bbb3a4a35f231e33b3c17f2"), "name" : "Sameer", "age" : 31, "
-hobbies" : [ "sleep", "eat" ] }
-{ "_id" : ObjectId("5bbb3a4f35f231e33b3c17f3"), "name" : "Sameer", "age" : 30, "
-hobbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "hobbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb3a4a35f231e33b3c17f2"), "name" : "Sameer", "age" : 31, "hobbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb3a4f35f231e33b3c17f3"), "name" : "Sameer", "age" : 30, "hobbies" : [ "sleep", "eat" ] }
 
 
 > db.student.find().sort({age:1})
@@ -104,42 +107,40 @@ hobbies" : [ "sleep", "eat" ] }
 hobbies" : [ "sleep", "eat" ] }
 { "_id" : ObjectId("5bbb3a4a35f231e33b3c17f2"), "name" : "Sameer", "age" : 31, "
 hobbies" : [ "sleep", "eat" ] }
-{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
-obbies" : [ "sleep", "eat" ] }
+{ "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "hobbies" : [ "sleep", "eat" ] }
 >
-
+```
 
 ## limit()
-
+```js
 > db.student.find().sort({age:1}).limit(2)
 { "_id" : ObjectId("5bbb3a4f35f231e33b3c17f3"), "name" : "Sameer", "age" : 30, "
 hobbies" : [ "sleep", "eat" ] }
 { "_id" : ObjectId("5bbb3a4a35f231e33b3c17f2"), "name" : "Sameer", "age" : 31, "
 hobbies" : [ "sleep", "eat" ] }
 >
-
+```
 ## skip() // used for pagination
-
+```js
 > db.student.find().sort({age:1}).skip(2).limit(1)
 { "_id" : ObjectId("5bbb2e0635f231e33b3c17f1"), "name" : "Sekar", "age" : 33, "h
 obbies" : [ "sleep", "eat" ] }
 >
-
+```
 
 ## Insert multiple Records
-
+```js
 > db.student.insertMany([{name:"A"},{name:"B"},{name:"C"}])
 
 ## Sample nested record
 
 >
-> db.student.insert({name:"Pradeep",products:{cook:{rice:"Basmati"},bath:{soap:"
-liril"}}})
-
+> db.student.insert({name:"Pradeep",products:{cook:{rice:"Basmati"},bath:{soap:"liril"}}})
+```
 
 ## update if match found and create if not exist - upsert
 
-
+```js
 > db.student.replaceOne({name:"Ajai dev"},{name:"Ajai dev",age:21},{upsert:true}
 )
 
@@ -155,20 +156,20 @@ WriteResult({
         "_id" : "5bbcb4bce596bc1c28c2bc8a"
 })
 >
-
+```
 
 ## Update Record
-
+```js
 > db.student.update({"name":"B"},{$set:{"name":"B- updated"}})
-
+```
 ## Update multiple Records
-
+```js
 > db.student.updateMany({name:"Updated Test"},{$set:{name:"Updated"}})
 
 > db.student.updateMany({age:{$gt:1}},{$set:{name:"Updated Test"}})
-
+```
 ## push array item using $push
-
+```js
 > db.student.update({name:"Sekar"},{"$push":{"hobbies":"d"}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.student.find()
@@ -177,69 +178,70 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 { "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "
 a", "b", "c" ] }
 >
-
+```
 
 ## increment by $inc
-
+```js
 > db.study.update({_id:"5bbcb4bce596bc1c28c2bc8a"},{$inc:{age:1}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 >
-
+```
 
 ## Replace One
-
+```js
 > db.student.replaceOne({name:"Updated"},{name:"Updated Test"})
 { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
 >
-
+```
 
 ## Remove Record
-
+```js
 > db.student.remove({name:"A"})
-
+```
 ## Remove property / column
-
+```js
 > db.student.update({name:"Sekar"},{"$unset":{"hobbies":1}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.student.find()
 { "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar" }
-{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "
-a", "b", "c" ] }
+{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "a", "b", "c" ] }
 >
-
+```
 ## Remove last array item from property
-
+```js
 > db.student.update({name:"Siva"},{"$pop":{"hobbies":1}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.student.find()
 { "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar" }
-{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "
-a", "b" ] }
+{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "a", "b" ] }
 > db.student.update({name:"Siva"},{"$pop":{"hobbies":1}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 >
 > db.student.find()
 { "_id" : ObjectId("5bbb5d3a35f231e33b3c17f9"), "name" : "Sekar" }
-{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "
-a" ] }
+{ "_id" : ObjectId("5bbb5d4d35f231e33b3c17fa"), "name" : "Siva", "hobbies" : [ "a" ] }
 >
 
-
+```
 
 ## Delete All
-
+```js
 > db.student.remove({})
 WriteResult({ "nRemoved" : 7 })
 >
 
-## drop table/collection
+```
 
+## drop table/collection
+```js
 > db.student.drop()
 true
 >
 
-## get collection names
+```
 
+## get collection names
+```js
 > db.getCollectionNames()
 [ ]
 > db.createCollection('student')
@@ -248,8 +250,10 @@ true
 [ "student" ]
 >
 
-## Show list Database
+```
 
+## Show list Database
+```js
 > show dbs
 admin    0.000GB
 config   0.000GB
@@ -259,8 +263,10 @@ sekardb  0.000GB
 study    0.000GB
 >
 
-## distinct 
+```
 
+## distinct 
+```js
 > db.student.insertMany([{name:"Siva"},{name:"Sekar"},{name:"Siva"}])
 {
         "acknowledged" : true,
@@ -276,8 +282,10 @@ study    0.000GB
 [ "Siva", "Sekar" ]
 >
 
-## Regular Expression based find 
+```
 
+## Regular Expression based find 
+```js
 > db.student.find()
 { "_id" : ObjectId("5bbb71de35f231e33b3c17fc"), "name" : "Siva" }
 { "_id" : ObjectId("5bbb71de35f231e33b3c17fd"), "name" : "Sekar" }
@@ -289,8 +297,10 @@ study    0.000GB
 { "_id" : ObjectId("5bbb71de35f231e33b3c17fe"), "name" : "Siva" }
 >
 
-## fetch Reg Exp by end value matching
+```
 
+## fetch Reg Exp by end value matching
+```js
 > db.student.find({name:/va$/})
 { "_id" : ObjectId("5bbb71de35f231e33b3c17fc"), "name" : "Siva" }
 { "_id" : ObjectId("5bbb71de35f231e33b3c17fe"), "name" : "Siva" }
@@ -312,22 +322,25 @@ study    0.000GB
 { "_id" : ObjectId("5bbb71de35f231e33b3c17fe"), "name" : "Siva" }
 >
 
-## prevent duplicate array item insertion by $addToSet
+```
 
+## prevent duplicate array item insertion by $addToSet
+```js
 > db.study.update(
    { _id: 1 },
    { $addToSet: { tags: { $each: [ "camera", "electronics", "accessories" ] } } }
  )
 >
 
-previously tags array conatins tags: [ "electronics", "supplies" ] 
+//previously tags array conatins tags: [ "electronics", "supplies" ] 
 
 modified is  "tags" : [ "electronics", "supplies", "camera", "
 accessories" ] }
 >
+```
 
 ## remove specific item from array conditionally
-
+```js
 > db.student.findOne({name:"Siva"})
 {
         "_id" : ObjectId("5bbb71de35f231e33b3c17fc"),
@@ -337,8 +350,7 @@ accessories" ] }
                 "b@b.com"
         ]
 }
-> db.student.update({_id:"5bbb71de35f231e33b3c17fc"},{"$pull":{"emails":"b@b.com
-"}})
+> db.student.update({_id:"5bbb71de35f231e33b3c17fc"},{"$pull":{"emails":"b@b.com"}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
 > db.student.findOne({name:"Siva"})
 {
@@ -350,39 +362,37 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
 }
 >
 
-## Positional array modifiers
+```
 
+## Positional array modifiers
+```js
 > db.study.find()
-{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "bo
-dy 1" }, { "title" : "title 2", "body" : "body 2" }, { "title" : "title 3", "bod
-y" : "body 3" } ] }
+{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "body 1" }, { "title" : "title 2", "body" : "body 2" }, { "title" : "title 3", "body" : "body 3" } ] }
 > db.study.update({_id:1},{$set:{"comments.1.body": "modified body"}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 > db.study.find()
-{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "bo
-dy 1" }, { "title" : "title 2", "body" : "modified body" }, { "title" : "title 3
-", "body" : "body 3" } ] }
+{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "body 1" }, { "title" : "title 2", "body" : "modified body" }, { "title" : "title 3", "body" : "body 3" } ] }
 >
 
+```
+
 ## modifying dynamically
-
+```js
 > db.study.find()
-{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "bo
-dy 1" }, { "title" : "title 2", "body" : "modified body" }, { "title" : "title 3
-", "body" : "body 3" } ] }
+{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "body 1" }, { "title" : "title 2", "body" : "modified body" }, { "title" : "title 3", "body" : "body 3" } ] }
 
-> db.study.update({"comments.title":"title 1"},{$set:{"comments.$.body": "modifi
-ed body"}})
+> db.study.update({"comments.title":"title 1"},{$set:{"comments.$.body": "modified body"}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
 > db.study.find()
-{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "mo
-dified body" }, { "title" : "title 2", "body" : "modified body" }, { "title" : "
+{ "_id" : 1, "name" : "Siva", "comments" : [ { "title" : "title 1", "body" : "modified body" }, { "title" : "title 2", "body" : "modified body" }, { "title" : "
 title 3", "body" : "body 3" } ] }
 >
 
-## less than using $lt
+```
 
+## less than using $lt
+```js
 > db.study.insertMany(
    [{
    _id: 1,
@@ -414,8 +424,10 @@ title 3", "body" : "body 3" } ] }
 { "_id" : 2, "name" : "Siva", "age" : 21 }
 >
 
-## find by size - $size
+```
 
+## find by size - $size
+```js
 db.study.insertMany(
    [{
    _id: 1,
@@ -453,8 +465,10 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-## $not
+```
 
+## $not
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -468,8 +482,10 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-## $or 
+```
 
+## $or 
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -482,8 +498,11 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 > 
 > 
-## $all
 
+```
+
+## $all
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -496,8 +515,10 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-## $slice - Projection
+```
 
+## $slice - Projection
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -512,8 +533,10 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2 ] }
 >
 
-## $nor
+```
 
+## $nor
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -526,8 +549,10 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-## $exists
+```
 
+## $exists
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -544,8 +569,10 @@ db.study.insertMany(
 > db.study.find({address:{$exists:true}})
 >
 
-## - $type
+```
 
+## - $type
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -565,8 +592,10 @@ db.study.insertMany(
 { "_id" : 5, "name" : "Siva", "age" : 20, "items" : "1,2,3" }
 >
 
-## null filtering
+```
 
+## null filtering
+```js
 > db.study.find({})
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -580,8 +609,10 @@ db.study.insertMany(
 { "_id" : 6, "name" : "Siva", "age" : 20, "items" : null }
 >
 
-## Aggregate
+```
 
+## Aggregate
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -594,8 +625,10 @@ db.study.insertMany(
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-## Aggregate - Example 2
+```
 
+## Aggregate - Example 2
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -608,16 +641,21 @@ db.study.insertMany(
 { "_id" : "Siva", "total_ages" : 45 }
 >
 
+```
+
 
 ## Aggregate - Example 3
+```js
 > db.student.aggregate([{$match:{age:{$gt:21}}},{$group:{_id:"$age",total:{$sum:
 "$age"}}}])
 { "_id" : 23, "total" : 23 }
 { "_id" : 22, "total" : 22 }
 >
 
-## Aggregate - Example - 4
+```
 
+## Aggregate - Example - 4
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -635,8 +673,10 @@ db.study.insertMany(
 { "_id" : 22, "total" : 44 }
 >
 
-## Aggregate - Example - 5
+```
 
+## Aggregate - Example - 5
+```js
 > db.student.aggregate([{$match:{age:{$gt:21}}},{$group:{_id:"$age",total:{$sum:
  "$age"}}},{$sort:{total:1}}])
 
@@ -644,23 +684,29 @@ db.study.insertMany(
 { "_id" : 23, "total" : 46 }
 >
 
-## Aggregate - Example - 6
+```
 
+## Aggregate - Example - 6
+```js
 > db.student.aggregate([{$match:{age:{$gt:21}}},{$group:{_id:"$age",total:{$sum:
  "$age"}}},{$sort:{total:1}},{$project:{total:1,_id:0}}])
 { "total" : 44 }
 { "total" : 46 }
 >
 
-## Aggregate - Example - 7
+```
 
+## Aggregate - Example - 7
+```js
 > db.student.aggregate([{$match:{age:{$gt:21}}},{$group:{_id:"$age",total:{$sum:
  "$age"}}},{$sort:{total:1}},{$project:{total:1,_id:0}},{$limit:1}])
 { "total" : 44 }
 >
 
-## Aggregate - Example - 8
+```
 
+## Aggregate - Example - 8
+```js
 > db.student.aggregate([{$match:{age:{$gt:10}}},{$group:{_id:"$age",total:{$sum:
  "$age"}}},{$sort:{total:1}},{$project:{total:1,_id:0}},{$limit:10}])
 { "total" : 20 }
@@ -673,8 +719,10 @@ db.study.insertMany(
 { "total" : 63 }
 >
 
-## Aggregate - Example - 9
+```
 
+## Aggregate - Example - 9
+```js
 > db.student.aggregate([{$match:{age:{$gt:10}}},{$group:{_id:"$age",total:{$sum:
  "$age"}}},{$sort:{total:1}},{$project:{total:1}},{$limit:10},{$skip:2},{$out:"d
 ata"}])
@@ -685,8 +733,10 @@ ata"}])
 { "_id" : 21, "total" : 63 }
 >
 
-## Aggregate - Example - 10
+```
 
+## Aggregate - Example - 10
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -711,8 +761,10 @@ ata"}])
 { "_id" : 8, "name" : "Siva", "age" : 23, "items" : 5 }
 >
 
-## Aggregate - Example - 11
+```
 
+## Aggregate - Example - 11
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -723,8 +775,7 @@ ata"}])
 { "_id" : 7, "name" : "Siva", "age" : 22, "items" : [ 1, 2 ] }
 { "_id" : 8, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 > 
-> db.student.aggregate([{$match:{age:{$gt:22}}},{$unwind:"$items"},{$project:{it
-ems:1,_id:0}}])
+> db.student.aggregate([{$match:{age:{$gt:22}}},{$unwind:"$items"},{$project:{items:1,_id:0}}])
 
 { "items" : 1 }
 { "items" : 2 }
@@ -738,8 +789,10 @@ ems:1,_id:0}}])
 { "items" : 5 }
 >
 
-## $redact - Example - 1
+```
 
+## $redact - Example - 1
+```js
 > db.student.aggregate(    [      { $redact: {         $cond: {            if: {
  $gt:["$age",22] },            then: "$$DESCEND",            else: "$$PRUNE"
       }        }      }    ] );
@@ -747,9 +800,11 @@ ems:1,_id:0}}])
 { "_id" : 8, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
+```
+
 
 ## Aggregate - Example - 2
-
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -771,8 +826,10 @@ en: "$$DESCEND",            else: "$$PRUNE"          }        }      }    ] );
 { "_id" : 8, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
 
-## Aggregate - Example - 3
+```
 
+## Aggregate - Example - 3
+```js
 > db.student.find()
 { "_id" : 1, "name" : "Siva", "age" : 20, "items" : [ 1, 2, 3 ] }
 { "_id" : 2, "name" : "Siva", "age" : 21, "items" : [ 1 ] }
@@ -788,6 +845,8 @@ $in:[5,"$items"]},            then: "$$DESCEND",            else: "$$PRUNE"
 { "_id" : 4, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 { "_id" : 8, "name" : "Siva", "age" : 23, "items" : [ 1, 2, 3, 4, 5 ] }
 >
+
+```
 
 ## Map Reduce
 
@@ -963,9 +1022,7 @@ db.books.mapReduce(mapFn, reduceFn, out_obj);
 
 ```
 
-===============================
-
-Example 4
+## Example 4
 
 ```js
 
