@@ -100,10 +100,6 @@ Note the expression `'a' + + 'b'` for addition:
 // You might have seen + '1' -> 1
 ```
 
-## `==` operator
-
-![](https://user-gold-cdn.xitu.io/2018/3/30/16275cb21f5b19d7?w=1630&h=1208&f=png&s=496784)
-
 `toPrimitive` in above figure is converting objects to primitive types.
 
 `===` is usually recommended to compare values. However, if you would like to check for `null` value, you can use `xx == null`.
