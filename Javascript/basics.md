@@ -21,7 +21,6 @@
   - [Deep copy](#deep-copy)
 - [The differences between call, apply, bind](#the-differences-between-call-apply-bind)
   - [simulation to implement  `call` and  `apply`](#simulation-to-implement--call-and--apply)
-- [Promise implementation](#promise-implementation)
 - [Generator Implementation](#generator-implementation)
 - [Map、FlatMap and Reduce](#mapflatmap-and-reduce)
 - [Async and await](#async-and-await)
