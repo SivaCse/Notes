@@ -1057,3 +1057,104 @@ db.account.mapReduce(mapFn, reduceFn, out_obj);
     "value" : 5600.0
 }
 ```
+
+## Indexing
+
+Indexes are used to perform fast query. by default it creates _id as 
+index and it cant be dropped.
+
+```js
+
+db.study.createIndex({name:1})
+
+
+/* 1 */
+{
+    "createdCollectionAutomatically" : false,
+    "numIndexesBefore" : 1,
+    "numIndexesAfter" : 2,
+    "ok" : 1.0
+}
+
+```
+here,
+
+createIndex is the function to create index and name is the column 1 represent it should be in asc order.
+
+
+### List indexes
+
+```js
+
+db.study.getIndexes();
+
+
+/* 1 */
+[
+    {
+        "v" : 2,
+        "key" : {
+            "_id" : 1
+        },
+        "name" : "_id_",
+        "ns" : "Study.study"
+    },
+    {
+        "v" : 2,
+        "key" : {
+            "name" : 1.0
+        },
+        "name" : "name_1",
+        "ns" : "Study.study"
+    }
+]
+
+```
+
+## Drop index
+
+```js
+
+db.study.dropIndex({name:1})
+
+/* 1 */
+{
+    "nIndexesWas" : 2,
+    "ok" : 1.0
+}
+
+```
+
+## Unique Indexes
+
+The unique property for an index causes MongoDB to reject duplicate values for the indexed field
+
+```js
+
+db.items.createIndex( { : 1 }, { unique: true } )
+
+```
+
+## Compund Index
+
+```js
+
+db.users.find().sort({"age" : 1, "username" : 1})
+
+```
+
+## Indexing Object
+
+```js
+
+db.users.createIndex({"loc.city" : 1})
+
+```
+
+## Indexing Specific Array
+
+```js
+
+db.blog.createIndex({"comments.10.votes": 1}) 
+
+```
