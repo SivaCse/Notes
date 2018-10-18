@@ -7,6 +7,7 @@
 
 * Events
 * css modification
+* Call stack
 * Data retrival
 * html 5 API
 * Datastructures
