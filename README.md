@@ -6,11 +6,11 @@
 ### Javascript Topics
 
 * Events
-* css modification
+* CSS modification
 * Call stack
 * Data retrival
-* html 5 API
-* Datastructures
+* HTML 5 API
+* Data Structures
 * Algorithms
 * Asynchronous
 * Objects in Detail
@@ -31,7 +31,7 @@
 * Recursion
 * Partial function
 * Currying
-* Memiozation
+* Memoization
 * Garbage collection
 * Iterables
 * Iterators and generators
