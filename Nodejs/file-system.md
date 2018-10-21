@@ -2,7 +2,7 @@
 
 ## Types
 
-1) Asynchroonous API
+1) Asynchronous API
 
 
     ```js
