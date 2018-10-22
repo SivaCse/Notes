@@ -33,7 +33,7 @@ source:[https://github.com/angular/angular/commit/344a5ca#diff-0ef0b3df44ffd7a42
 
 * Why would you use renderer methods instead of using native element methods?
 
-You are not sure what the context you are doing the rendering. You might be assuming the browser compilation and native DOM methods to be available but that might not be the case. It is better to be safe and let Angular handle the manupulation for elements.
+You are not sure what the context you are doing the rendering. You might be assuming the browser compilation and native DOM methods to be available but that might not be the case. It is better to be safe and let Angular handle the manipulation for elements.
 
 * How would you protect a component being activated through the router?
 * How would you insert an embedded view from a prepared `TemplateRef`?

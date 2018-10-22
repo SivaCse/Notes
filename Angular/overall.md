@@ -448,6 +448,6 @@ Advantages
 disadvantages
 -------------
 * syntax may be unfamiliar to some developers
-* doesnt work with combineReducers
+* doesn't work with combineReducers
 * may not be able to use rest and spread operators
 

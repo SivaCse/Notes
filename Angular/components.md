@@ -2,6 +2,8 @@
 
 #### What is the minimum definition of a component?
 
+```ts
+
 		import { Component } from '@angular/core';
 
 		@Component({
@@ -10,9 +12,12 @@
 		})
 		export class MinimumComponent {}
 
+```
+
+
 Note that:
 
-* constructor is not requred, it is auto generated
+* constructor is not required, it is auto generated.
 * selector is not required, component can be accessed via router by class name
 * template is required (either template or templateUrl)
 
@@ -30,7 +35,7 @@ so precisely:
 * component uses @Component decorator, directive uses @Directive decorator
 * component has template, directive has not
 
-#### How do components comunicate with each other?
+#### How do components communicate with each other?
 
 Types of communication:
 
