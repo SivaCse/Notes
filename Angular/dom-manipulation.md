@@ -181,21 +181,21 @@ ngOnInit() {
 
 ## Other Renderer functions
 
-createElement
-createComment
-createText
-appendChild
-insertBefore
-removeChild
-selectRootElement
-parentNode
-nextSibling
-setAttribute
-removeAttribute
-addClass
-removeClass
-setStyle
-removeStyle
-setProperty
-setValue
-listen
+* createElement
+* createComment
+* createText
+* appendChild
+* insertBefore
+* removeChild
+* selectRootElement
+* parentNode
+* nextSibling
+* setAttribute
+* removeAttribute
+* addClass
+* removeClass
+* setStyle
+* removeStyle
+* setProperty
+* setValue
+* listen
