@@ -1,3 +1,10 @@
+# Pipes
+
+are used to process data. it is classified into two types
+
+* Pure - its default by angular
+* Im Pure
+
 * What is a pure pipe?
 * What is an async pipe?
 * What kind of data can be used with async pipe?
@@ -19,3 +26,19 @@ Async pipe knows about the lifespan of the component and unscubscribes from the 
 
   * Cannot use the input value to determine if the output will change.
   * Cannot be shared because the internal state can be affected from outside.
+
+## Example 
+
+```ts
+
+import { Pipe, PipeTransform } from '@angular/core';
+  
+@Pipe({name: 'exponentialStrength'})
+export class ExponentialStrengthPipe implements PipeTransform {
+  transform(value: number, exponent: string): number {
+    let exp = parseFloat(exponent);
+    return Math.pow(value, isNaN(exp) ? 1 : exp);
+  }
+}
+
+```
