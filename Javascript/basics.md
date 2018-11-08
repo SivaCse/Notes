@@ -1392,3 +1392,44 @@ parseFloat((0.1 + 0.2).toFixed(10))
 |  \b  |    start or end of a word    |
 |  \B  |         the opposite of the above         |
 
+## null vs undefined
+
+```js
+
+var a = null
+undefined
+var b = undefined
+undefined
+typeof a 
+"object"
+typeof b
+"undefined"
+a+= 3
+3
+b += 3
+NaN
+var d;
+undefined
+d += 234
+NaN
+d
+NaN
+null+9
+9
+undefined+9
+NaN
+
+```
+
+```js
+
+var x = 10;
+ 
+function f()
+{
+    alert(this.x);
+}
+ 
+f(); // will alert 10
+
+```
