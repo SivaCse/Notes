@@ -169,10 +169,9 @@ var set = new Set();
 
 const result = [...set].map(val => ({name:val}));
 
-```
 console.log(result);
 
-===================
+```
 
 Compare two objects are equal
 -----------------------------
@@ -185,8 +184,6 @@ const isEqual = Object.keys(obj1).sort().join() === Object.keys(obj2).sort().joi
 
 console.log(isEqual);
 ```
-----------------------------------
-```js
 
 Sort an array without sort() 
 =============================

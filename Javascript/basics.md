@@ -1433,3 +1433,33 @@ function f()
 f(); // will alert 10
 
 ```
+
+```js
+
+var a = 12;
+function hello(a){
+ a = 13;
+}
+
+hello(a);
+
+console.log(a,'a') // 12 "a"
+
+```
+
+```js
+
+var a = {
+name : "Siva"
+}
+
+function hello(a){
+ a.name = "New Siva";
+  
+}
+
+hello(a);
+
+console.log(a,'a') // {name: "New Siva"} "a"
+
+```
