@@ -4,7 +4,7 @@ I have Over all 4+ years Experience in the Industry. in that 3 years completely 
 
 Have you done any API?
 
-Yes. I have Experience with creating REST Based WEB API using node and express js.
+Yes. I have Experinece with creating REST Based WEB API using node and express js.
 
 What kind of authentication u have used?
 
@@ -20,7 +20,7 @@ Have u implemented any multiple oauth?
 
 Have u implemented REST API with roles and permissions?
 
- Yes. I have created REST API along jwt to restrict user access based roles and permissions.
+ Yes. I have created REST API along jwt to restric user access based roles and permissions.
 
 Express Middleware?
 
@@ -37,10 +37,10 @@ How you maintain code quality?
 	we can maintain code quality in the following ways.
 
 	* Write understandable code
-	* use functional programming libraries such as lodash or underscore js to reduce no of lines
+	* use functional programming libraries such as loadash or underscore js to reduce no of lines
 	* use js documentation tools to generate documentation for files ( jsdoc3 )
 	* write unit tests ( because unit tests are good documentation)
-	*  use code formatting and best practices with Lint
+	*  use code formatting and best practises with Lint
 
 
 Have u got any experience in performance tuning?
@@ -50,7 +50,15 @@ Have u got any experience in performance tuning?
 How you do that?	
 
 	* Writing functionalities by choosing proper design patterns
-	* 
+	* use async instead sync to avoid blocking
+	* database optimization is needed for db driven web apps to increase performance
+	* need query optimization example ( mongo db) using explain method
+	* always use create and use indexes for fast retrival from collections
+	* Writing DRY code
+	* using server side caching
+	* writing small chunk of code
+	* always use compression using gip
+
 
 
 

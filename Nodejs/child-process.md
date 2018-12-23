@@ -184,3 +184,21 @@ process.on('message', (msg) => {
 Every time the event loop takes a full trip, we call it a tick.
 
 When we pass a function to process.nextTick(), we instruct the engine to invoke this function at the end of the current operation, before the next event loop tick starts
+
+```js
+
+var exec = require("child_process").exec;
+
+exec("node -v", function(err, stdout) {
+
+	if (err) {
+		throw err;
+	}
+
+	console.log("Node Version Executed");
+
+	console.log(stdout);
+
+});
+
+```
