@@ -1,3 +1,5 @@
+```js
+
 List()
 var list = Immutable.List([1,2,3])
 // [1, 2, 3]
@@ -702,3 +704,5 @@ console.log(list1.isSuperset(list2));
 // false
 console.log(list2.isSuperset(list1));
 // true
+
+```js
