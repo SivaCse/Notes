@@ -58,20 +58,21 @@ _Tutorials that teach the basic concepts of Redux and how to use it_
 _Explanations of the React-Redux bindings and the `connect` function_
 
 - **Why Redux is Useful in React Apps**  
-  https://www.fullstackreact.com/articles/redux-with-mark-erikson/  
-  An explanation of some of the benefits of using Redux with React, including sharing data between components and hot module reloading.
+    * Predictable state updates make it easier to understand how the data flow works in the application
+    * The use of "pure" reducer functions makes logic easier to test, and enables useful features like "time-travel debugging".
+    * Centralizing the state makes it easier to implement things like logging changes to the data, or persisting data between page refreshes
+    * Redux helps us in these tricky scenarios where multiple components want to share some or all of the same data, but are not closely related to one another. Redux provides a central store that can hold data from anywhere in the application
+    * Redux, just like React, follows a strict, one-way data flow. This is beneficial for many reasons - When updates to the store are necessary, the path for updating the data in the store follows the same flow every time, no matter where the update is coming from, whether it's from a user inputting data into a form or fetching data from a REST API. Just as all rivers lead to the ocean, the data in a Redux application flows in one direction to lead to the store
+    * Redux also helps us save time when developing because we can "hot-reload" and retain our app's state. Hot reloading is ability to automatically reload parts of your code whenever you save a file, without having to refresh the entire page
 
 * **What Does Redux Do? (and when should you use it?)**  
-  https://daveceddia.com/what-does-redux-do/  
-  An excellent summary of how Redux helps solve data flow problems in a React app.
+## It’s About Data Flow
+    * If you’ve used React for more than a few minutes, you probably know about props and one-way data flow. Data is passed down the component tree via props. Given a component like this:
 
-* **How Redux Works: A Counter-Example**  
-  https://daveceddia.com/how-does-redux-work/  
-  A great follow-up to the previous article. It explains how to use Redux and React-Redux, by first showing a React component that stores a value in its internal state, and then refactoring it to use Redux instead. Along the way, the article explains important Redux terms and concepts, and how they all fit together to make the Redux data flow work properly.
-
-* **Redux and React: An Introduction**  
-  http://jakesidsmith.com/blog/post/2017-11-18-redux-and-react-an-introduction/  
-  A great introduction to Redux's core concepts, with explanations of how to use the React-Redux package to use Redux with React.
+## Plug Any Data Into Any Component
+    * This is the problem that Redux solves. It gives components direct access to the data they need.
+###When To Add Redux
+    * If you have a component structure like the one above – where props are being forwarded down through many layers – consider using Redux.
 
 ## Project-Based Tutorials
 

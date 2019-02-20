@@ -335,3 +335,11 @@ Auto-generated Record types don't work because of general-purpose Maps :)
 https://github.com/facebook/immutable-js/issues/341
 
 _.pick(record, 'fieldA', 'fieldB')
+
+
+###Object Immutability in JavaScript
+Natively, objects are mutable in JavaScript. However, if we're careful enough, we can implement some immutability. Amongst other methods, we can use the following:
+
+* The spread operator: The ... operator can be used to transform the properties of an object and returns a new object which is the result of the mutation.
+* Object.assign: Object.assign(target, ...sources). This method is used to copy the values of all enumerable own properties from one or more source objects to a target object.
+* Other non-mutating array methods like filter, concat and slice.
