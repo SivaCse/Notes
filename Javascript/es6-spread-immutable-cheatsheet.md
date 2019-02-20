@@ -155,3 +155,50 @@ const moreCharacters = [ ...characters, ...otherCharacters ]
 console.log(moreCharacters) // [ 'Obi-Wan', 'Vader', 'Luke', 'Yoda', 'Finn' ]
 
 ```
+
+###Adding or Updating the value of a property:
+
+```js
+// ES6:
+function updateState(state, item) {
+    return Object.assign({}, state, {[item.id]: item});
+}
+
+// With Object Spread:
+function updateState(state, item) {
+  return {
+     ...state,
+     [item.id]: item
+  };
+}
+
+```
+
+
+###Deleting a property
+
+```js
+// ES6:
+function deleteProperty(state, id) {
+    var newState = Object.assign({}, state);
+    delete newState[id];
+    return newState; 
+}
+
+// With Object Spread:
+function deleteProperty(state, id) {
+    let  {[id]: deleted, ...newState} = state;
+    return newState;
+}
+
+// Or even shorter as helper function:
+function deleteProperty({[id]: deleted, ...newState}, id) {
+    return newState;
+}
+
+// Or inline:
+function deleteProperty(state, id) {
+    return (({[id]: deleted, ...state}) => state)(state);
+}
+
+```
