@@ -1,0 +1,88 @@
+may you please elaborate on it?
+
+seems fine to me.
+
+I am wondering what you mean by ...
+
+I would like to confirm which one is correct?
+
+you can say A rather than B
+
+Both of these ... feel wrong to me.
+
+if you help i would appreciate it.
+
+i dont believe this is right one.
+
+What exactly do you mean by ...
+
+but please correct me if I'm wrong.
+
+I wouldn't be able to answer them.
+
+Have you looked up ..
+
+A while back I heard this
+
+I guess I was wrong.
+
+I may be wrong, but I tend to think ....
+
+this is good item i've ever seen.
+
+Yeah, I suspected something like that. Maybe it's because I'm not from that background but it seems like it might be easier to figure out JS first.
+
+Not sure though.
+
+Does this help?
+
+I’d definitely learn react before redux 
+
+Does the Alpha currently have a Hooks api ?
+
+I have a albums store and within it I also have a array called albums that holds actual albums... Should I rename it to 'data'?
+
+I am using redux for some values but I would like to keep a local state for textInput fields. Is this okay to do or is it considered bad practice?
+
+i did find it a couple days ago, and i can see it does some of the best practices.
+
+I assume you're planning on adding more data down the road
+
+I'd encourage you to try using that configureStore() function from Redux Starter Kit
+you can go ahead and keep writing all your reducers by hand for now
+
+I’ve changed it and now it says it can’t find react redux when compiling my app.
+
+Let me give it a quick try
+
+Too bad I can’t test it till morning but it’s the exact same issue
+
+Added some logging to see where the problem is
+
+Thanks, will check it out
+
+I have been working on a pretty big application for the last year
+
+we knew it could be done better
+
+this has nothing to do with your abstractions
+
+changing abstractions like for example a Button will most commonly affect a multitude of module
+
+This is how we started thinking about a modular architecture for our application
+
+I don't know as I am still learning
+
+some of the things we could accomplish by using them.
+
+Small mistake but everything else is explained perfectly
+
+I’m curious why you say he should
+
+I do use Bootstrap or Bulma with SASS Modules for styling.
+
+I have a page with a form collection were the user can add, remove or edit their favorite books and movies 
+
+I am wondering where we should store components with logic or styling
+
+As many others have pointed out, more details are required
